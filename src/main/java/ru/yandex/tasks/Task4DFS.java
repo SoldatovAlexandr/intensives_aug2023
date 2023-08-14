@@ -1,25 +1,25 @@
 package ru.yandex.tasks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Task4DFS {
-    public void runSearch() {
-        /*
-         * Реализация dfs
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+
+    public static void dfs(int[][] tree, int root, List<Integer> result) {
+        if (root == -1) {
+            return;
+        }
+        int[] node = tree[root];
+        dfs(tree, node[0], result);
+        dfs(tree, node[1], result);
+        result.add(root);
     }
 
     public static int[] getDFSOrder(int[][] tree, int root) {
-        /*
-         * Функция возвращает массив с порядковыми номерами вершин в обходе
-         * Сначала левое поддерево, затем правое, затем корень.
-         * Дано дерево из n (<= 10^5) вершин (пронумерованных от 0 до n-1)
-         * tree - двумерный массив, tree[i][0] - номер левого сына, tree[i][1] - номер правого сына (если нет левого / правого сына, соотв. элемент -1)
-         * root - корень, откуда нужно начинать обход
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        List<Integer> result = new ArrayList<>();
+        dfs(tree, root, result);
+        return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
     public static void selfCheck() {
