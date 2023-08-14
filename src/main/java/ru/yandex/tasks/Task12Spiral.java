@@ -4,13 +4,24 @@ import java.util.Arrays;
 
 public class Task12Spiral {
     public static int[][] draw (int N) {
-        /*
-         * Отрисовывает "спираль" в двумерном массиве по часовой стрелке
-         * -10^3 <= N <= 10^3
-         * Выход: массив со спиралью
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        int[][] matrix = new int[N][N];
+
+        int count = 1;
+        for (int i = 0; i < (N + 1) / 2; i++) {
+            for (int pointer = i; pointer < N - i; pointer++) {
+                matrix[i][pointer] = count++;
+            }
+            for (int pointer = i + 1; pointer < N - i; pointer++) {
+                matrix[pointer][N - i - 1] = count++;
+            }
+            for (int pointer = N - i - 2; pointer >= i; pointer--) {
+                matrix[N - i - 1][pointer] = count++;
+            }
+            for (int pointer = N - i - 2; pointer > i; pointer--) {
+                matrix[pointer][i] = count++;
+            }
+        }
+        return matrix;
     }
 
     public static void selfCheck() {
