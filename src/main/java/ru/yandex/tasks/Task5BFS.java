@@ -1,24 +1,29 @@
 package ru.yandex.tasks;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Task5BFS {
-    public void runSearch() {
-        /*
-         * Реализация bfs
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+
+    public static void bfs(int[][] tree, Queue<Integer> queue, List<Integer> result) {
+        while (!queue.isEmpty()) {
+            int root = queue.poll();
+            if (root != -1) {
+                int[] node = tree[root];
+                result.add(root);
+                queue.offer(node[0]);
+                queue.offer(node[1]);
+            }
+        }
     }
 
     public static int[] getBFSOrder(int[][] tree, int root) {
-        /*
-         * Функция возвращает массив с порядковыми номерами вершин в обходе
-         * Дано дерево из n (<= 10^5) вершин (пронумерованных от 0 до n-1)
-         * tree - двумерный массив, tree[i][0] - номер левого сына, tree[i][1] - номер правого сына (если нет левого / правого сына, соотв. элемент -1).
-         * root - корень, откуда нужно начинать обход
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        Queue<Integer> queue = new LinkedList<>();
+        List<Integer> result = new ArrayList<>();
+
+        queue.offer(root);
+        bfs(tree, queue, result);
+
+        return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
     public static void selfCheck() {
