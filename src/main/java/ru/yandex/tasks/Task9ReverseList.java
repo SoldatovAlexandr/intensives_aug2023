@@ -2,13 +2,18 @@ package ru.yandex.tasks;
 
 public class Task9ReverseList {
     public static Node reverse (Node head) {
-        /*
-         * Разворот односвязного списка
-         * head - голова списка
-         * Выход: новая голова списка
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+
+        Node current = head;
+        Node previous = null;
+
+        while (current != null) {
+            Node next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+
+        return previous;
     }
 
     public static void selfCheck() {
