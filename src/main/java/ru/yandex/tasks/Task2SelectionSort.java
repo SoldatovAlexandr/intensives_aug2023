@@ -5,12 +5,22 @@ import java.util.Arrays;
 
 public class Task2SelectionSort {
     public static ArrayList<Integer> sort(ArrayList<Integer> numbers) {
-        /*
-         * numbers: массив целых чисел, -10^5 <= numbers[i] <= 10^5, длина массива до 10^5
-         * Выход: отсортированный (сортировкой выбором!) numbers
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        for (int i = 0; i < numbers.size(); i++) {
+            int indexOfMinElement = i;
+            for (int j = i; j < numbers.size(); j++) {
+                if (numbers.get(indexOfMinElement) > numbers.get(j)) {
+                    indexOfMinElement = j;
+                }
+            }
+            swap(numbers, indexOfMinElement, i);
+        }
+        return numbers;
+    }
+
+    private static void swap(ArrayList<Integer> numbers, int first, int second) {
+        int temp = numbers.get(first);
+        numbers.set(first, numbers.get(second));
+        numbers.set(second, temp);
     }
 
     public static void selfCheck() {
