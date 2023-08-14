@@ -1,14 +1,37 @@
 package ru.yandex.tasks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Task10Permutations {
+
+    private static void dfs(int[] numbers, boolean[] used, List<Integer> path, List<List<Integer>> answer) {
+        if (path.size() == numbers.length) {
+            answer.add(new ArrayList<>(path));
+            return;
+        }
+        for (int i = 0; i < numbers.length; i++) {
+            if (!used[i]) {
+                used[i] = true;
+                path.add(numbers[i]);
+                dfs(numbers, used, path, answer);
+                path.remove(path.size() - 1);
+                used[i] = false;
+            }
+        }
+    }
+
     public static int[][] permutations(int[] numbers) {
-        /*
-         * Возвращает массив со всеми перестановками массива numbers (до 10 элементов, все по модулю до 10^5)
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        List<List<Integer>> answer = new ArrayList<>();
+
+        dfs(numbers, new boolean[numbers.length], new ArrayList<>(), answer);
+
+        int[][] result = new int[answer.size()][];
+        for (int i = 0; i < answer.size(); i++) {
+            result[i] = answer.get(i).stream().mapToInt(Integer::intValue).toArray();
+        }
+        return result;
     }
 
     public static void selfCheck() {
