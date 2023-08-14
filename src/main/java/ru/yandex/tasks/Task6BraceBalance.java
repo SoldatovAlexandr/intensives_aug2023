@@ -1,13 +1,27 @@
 package ru.yandex.tasks;
 
+import java.util.Map;
+import java.util.Stack;
+
 public class Task6BraceBalance {
+
+    private static final Map<Character, Character> brackets = Map.of(
+            '(', ')', '[', ']', '{', '}'
+    );
+
     public static boolean checkBalance(String sequence) {
-        /*
-         * sequence - последовательность скобок []{}() длины до 10^5
-         * Выход: true/false, является ли строка ПСП
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return true;
+        Stack<Character> stack = new Stack<>();
+
+        for (char bracket : sequence.toCharArray()) {
+            if (brackets.containsKey(bracket)) {
+                stack.push(brackets.get(bracket));
+            } else {
+                if (!stack.pop().equals(bracket)) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
     }
 
     public static void selfCheck() {
