@@ -3,13 +3,25 @@ package ru.yandex.tasks;
 public class Task11BiggestSubarraySum {
 
     public static Subarray find(int[] numbers) {
-        /*
-         * Находит подмассив (подряд идущие элементы массива) с наибольшей суммой элементов
-         * numbers: массив целых чисел, -10^5 <= numbers[i] <= 10^5, длина массива до 10^5
-         * Выход: Subarray
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+
+        Subarray result = new Subarray();
+
+        int startCurrentMax = 0;
+        int maximumSum = Integer.MIN_VALUE, currSumSubarray = 0;
+
+        for (int i = 0; i < numbers.length; i++) {
+            currSumSubarray += numbers[i];
+            if (maximumSum < currSumSubarray) {
+                maximumSum = currSumSubarray;
+                result.left = startCurrentMax;
+                result.right = i + 1;
+            }
+            if (currSumSubarray < 0) {
+                startCurrentMax = i + 1;
+                currSumSubarray = 0;
+            }
+        }
+        return result;
     }
 
     public static void selfCheck() {
