@@ -11,7 +11,7 @@ public class Task7PrimeNumbers {
 
         for (int i = 2; i < N + 1; i++) {
             if (isPrimes[i]) {
-                for (int j = i * i; j < N + 1; j += i) {
+                for (int j = i * i; j < N + 1 && j > 0; j += i) {
                     isPrimes[j] = false;
                 }
             }
